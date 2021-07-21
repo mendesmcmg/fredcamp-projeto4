@@ -1,5 +1,6 @@
 import { Component } from "react";
 import db from "../utils/firebase";
+import ItemsCard from "./ItemsCard";
 
 class ItemsList extends Component {
   constructor() {
@@ -25,16 +26,10 @@ class ItemsList extends Component {
     return (
       <>
         <div>
-          {this.state.posts.map((post) => {
-            return (
-              <div key={post.date}>
-                <p>{post.date}</p>
-                <h1>{post.title}</h1>
-                <p>{post.text}</p>
-                <button onClick={console.log("porra")}>Delete</button>
-              </div>
-            );
-          })}
+          {this.state.posts.map((post) =>  (
+              <ItemsCard key={post.date} title={post.title} text={post.text} date={post.date}/>
+            )
+          )}
         </div>
       </>
     );
