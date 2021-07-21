@@ -40,7 +40,6 @@ class ItemsForm extends Component {
         date,
       })
       .then((_) => {
-        console.log(db.ref(`all_posts`));
         this.setState({ title: "", text: "" });
       });
   }
@@ -65,7 +64,7 @@ class ItemsForm extends Component {
           />
           <br />
           <br />
-          <Button variant="contained" color="primary" onClick={this.createPost}>
+          <Button variant="contained" color="primary" onClick={this.createPost} type="submit">
             Create Post
           </Button>
         </form>
