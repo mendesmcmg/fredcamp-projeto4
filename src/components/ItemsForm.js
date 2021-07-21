@@ -31,7 +31,7 @@ class ItemsForm extends Component {
   createPost(e) {
     e.preventDefault();
     const { title, text } = this.state;
-    const date = Date.now();
+    const date = new Date().toLocaleString('pt-br');
 
     db.ref(`all_posts/`)
       .push({
