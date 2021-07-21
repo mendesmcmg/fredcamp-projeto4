@@ -1,3 +1,4 @@
+import { Container } from "@material-ui/core";
 import { Component } from "react";
 import db from "../utils/firebase";
 import ItemsCard from "./ItemsCard";
@@ -24,14 +25,18 @@ class ItemsList extends Component {
 
   render() {
     return (
-      <>
+      <Container>
         <div>
-          {this.state.posts.map((post) =>  (
-              <ItemsCard key={post.date} title={post.title} text={post.text} date={post.date}/>
-            )
-          )}
+          {this.state.posts.map((post) => (
+            <ItemsCard
+              key={post.date}
+              title={post.title}
+              text={post.text}
+              date={post.date}
+            />
+          ))}
         </div>
-      </>
+      </Container>
     );
   }
 }

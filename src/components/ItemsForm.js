@@ -1,3 +1,4 @@
+import { Button, Container, TextField } from "@material-ui/core";
 import React, { Component } from "react";
 import db from "../utils/firebase";
 
@@ -46,21 +47,26 @@ class ItemsForm extends Component {
 
   render() {
     return (
-      <>
+      <Container>
         <form onSubmit={this.createPost}>
-          <input
-            placeholder="title"
+          <TextField
+            label="Title"
             value={this.state.title}
             onChange={this.handleTitleChange}
           />
-          <input
-            placeholder="text"
+          <br />
+          <TextField
+            label="Text"
             value={this.state.text}
             onChange={this.handleTextChange}
           />
-          <button onClick={this.createPost}>Create Post</button>
+          <br />
+          <br />
+          <Button variant="contained" color="primary" onClick={this.createPost}>
+            Create Post
+          </Button>
         </form>
-      </>
+      </Container>
     );
   }
 }

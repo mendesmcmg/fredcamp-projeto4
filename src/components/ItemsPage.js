@@ -1,4 +1,4 @@
-import { AppBar, Toolbar } from "@material-ui/core";
+import { AppBar, Container, Toolbar, Typography } from "@material-ui/core";
 import ItemsForm from "./ItemsForm";
 import ItemsList from "./ItemsList";
 
@@ -7,11 +7,13 @@ function ItemsPage() {
     <>
       <AppBar position="static">
         <Toolbar>
-          <h1>Post List</h1>
+          <Typography variant="h5">Post List</Typography>
         </Toolbar>
       </AppBar>
-      <br/><br/>
+      <br />
+      <br />
       <ItemsForm />
+      <br/>
       <ItemsList />
     </>
   );
