@@ -1,4 +1,4 @@
-import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
+import { Button, Card, CardContent, makeStyles, Typography } from "@material-ui/core";
 
 function deleteItem() {
   console.log("ui");
@@ -11,7 +11,7 @@ function ItemsCard({ key, title, text, date }) {
         <p>{date}</p>
         <h1>{title}</h1>
         <p>{text}</p>
-        <button onClick={deleteItem}>Delete</button>
+        <Button variant="outlined" color="secondary" onClick={deleteItem}>Delete</Button>
       </CardContent>
     </Card>
   );

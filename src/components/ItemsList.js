@@ -25,7 +25,7 @@ class ItemsList extends Component {
 
   render() {
     return (
-      <Container>
+      <Container maxWidth="sm">
         <div>
           {this.state.posts.map((post) => (
             <ItemsCard

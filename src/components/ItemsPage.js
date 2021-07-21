@@ -10,11 +10,13 @@ function ItemsPage() {
           <Typography variant="h5">Post List</Typography>
         </Toolbar>
       </AppBar>
-      <br />
-      <br />
-      <ItemsForm />
-      <br/>
-      <ItemsList />
+      <Container maxWidth="sm">
+        <br />
+        <br />
+        <ItemsForm />
+        <br />
+        <ItemsList />
+      </Container>
     </>
   );
 }

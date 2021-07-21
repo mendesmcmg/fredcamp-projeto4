@@ -47,15 +47,18 @@ class ItemsForm extends Component {
 
   render() {
     return (
-      <Container>
+      <Container maxWidth="sm">
         <form onSubmit={this.createPost}>
           <TextField
+            fullWidth
+            margin="2rem"
             label="Title"
             value={this.state.title}
             onChange={this.handleTitleChange}
           />
           <br />
           <TextField
+            fullWidth
             label="Text"
             value={this.state.text}
             onChange={this.handleTextChange}
