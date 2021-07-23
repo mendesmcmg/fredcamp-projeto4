@@ -1,5 +1,4 @@
-import "./App.css";
-import ItemsPage from "./components/ItemsPage";
+import ItemsPage from "./pages/ItemsPage";
 
 function App() {
   return <ItemsPage />;

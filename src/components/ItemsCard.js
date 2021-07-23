@@ -1,26 +1,19 @@
-import {
-  Button,
-  Card,
-  CardContent
-} from "@material-ui/core";
-import db from "../utils/firebase";
+import { Button, Card, CardContent } from "@material-ui/core";
+import deleteItem from "../api/deleteItem";
 
-const ItemsCard = ({ id, key, title, text, date }) => {
-  const deleteItem = (id) => {
-    db.ref('all_posts/'+id).remove();
-  };
+const ItemsCard = ({ post }) => {
+  const { key, title, text, date } = post;
 
   return (
-    <Card variant="outlined">
+    <Card variant="outlined" style={{ marginBottom: 8 }}>
       <CardContent>
         <p>{date}</p>
         <h1>{title}</h1>
         <p>{text}</p>
         <Button
-          value={key}
           variant="outlined"
           color="secondary"
-          onClick={() => deleteItem(id)}
+          onClick={() => deleteItem(key)}
         >
           Delete
         </Button>
