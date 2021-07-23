@@ -73,7 +73,7 @@ class ItemsForm extends Component {
       titleField = (
         <TextField
           fullWidth
-          margin="2rem"
+          style={{ marginBottom: 8 }}
           label="Title"
           value={this.state.title}
           onChange={this.handleTitleChange}
@@ -85,7 +85,7 @@ class ItemsForm extends Component {
           error
           helperText="Title required"
           fullWidth
-          margin="2rem"
+          style={{ marginBottom: 8 }}
           label="Title"
           value={this.state.title}
           onChange={this.handleTitleChange}

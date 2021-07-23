@@ -17,8 +17,8 @@ class ItemsList extends Component {
     db.ref("all_posts/").on("value", (snapshot) => {
       let allPosts = [];
       snapshot.forEach((snap) => {
-        let value = snap.val()
-        value.key = snap.key
+        let value = snap.val();
+        value.key = snap.key;
         allPosts.push(value);
       });
       this.setState({ posts: allPosts });
@@ -31,8 +31,8 @@ class ItemsList extends Component {
         <div>
           {this.state.posts.map((post) => (
             <ItemsCard
-              id={post.key}
               key={post.key}
+              id={post.key}
               title={post.title}
               text={post.text}
               date={post.date}
