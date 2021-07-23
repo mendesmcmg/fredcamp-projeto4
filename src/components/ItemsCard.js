@@ -1,9 +1,11 @@
 import { Button, Card, CardContent } from "@material-ui/core";
 import db from "../utils/firebase";
 
-const ItemsCard = ({ id, title, text, date }) => {
-  const deleteItem = (id) => {
-    db.ref("all_posts/" + id).remove();
+const ItemsCard = ({ post }) => {
+  const { key, title, text, date } = post;
+
+  const deleteItem = () => {
+    db.ref("all_posts/" + key).remove();
   };
 
   return (
@@ -12,11 +14,7 @@ const ItemsCard = ({ id, title, text, date }) => {
         <p>{date}</p>
         <h1>{title}</h1>
         <p>{text}</p>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={() => deleteItem(id)}
-        >
+        <Button variant="outlined" color="secondary" onClick={deleteItem}>
           Delete
         </Button>
       </CardContent>

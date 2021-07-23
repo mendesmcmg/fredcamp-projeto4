@@ -3,55 +3,46 @@ import React, { Component } from "react";
 import db from "../utils/firebase";
 
 class ItemsForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      posts: [],
-      title: "",
-      text: "",
-      titleValid: true,
-      textValid: true,
-    };
+  state = {
+    posts: [],
+    title: "",
+    text: "",
+    titleValid: true,
+    textValid: true,
+  };
 
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleTextChange = this.handleTextChange.bind(this);
-    this.createPost = this.createPost.bind(this);
-  }
-
-  handleTitleChange(e) {
+  handleTitleChange = (e) => {
     this.setState({
       title: e.target.value,
     });
-  }
+  };
 
-  handleTextChange(e) {
+  handleTextChange = (e) => {
     this.setState({
       text: e.target.value,
     });
-  }
+  };
 
-  checkValid() {
-    if (!this.state.title || this.state.title === "") {
+  checkValid = () => {
+    const { title, text } = this.state;
+    if (title === "") {
       this.setState({ titleValid: false });
-      return false;
     } else {
       this.setState({ titleValid: true });
-      if (!this.state.text || this.state.text === "") {
-        this.setState({ textValid: false });
-        return false;
-      } else {
-        this.setState({ textValid: true });
-        return true;
-      }
     }
-  }
+    if (text === "") {
+      this.setState({ textValid: false });
+    } else {
+      this.setState({ textValid: true });
+    }
 
-  createPost(e) {
+    return title !== "" && text !== "";
+  };
+
+  createPost = (e) => {
     e.preventDefault();
     const { title, text } = this.state;
     const date = new Date().toLocaleString("pt-br");
-
-    this.checkValid();
 
     if (this.checkValid() === true) {
       db.ref(`all_posts/`)
@@ -60,11 +51,11 @@ class ItemsForm extends Component {
           text,
           date,
         })
-        .then((_) => {
+        .then(() => {
           this.setState({ title: "", text: "" });
         });
     }
-  }
+  };
 
   render() {
     let titleField;

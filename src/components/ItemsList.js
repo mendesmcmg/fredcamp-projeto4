@@ -4,14 +4,11 @@ import db from "../utils/firebase";
 import ItemsCard from "./ItemsCard";
 
 class ItemsList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      posts: [],
-      title: "",
-      text: "",
-    };
-  }
+  state = {
+    posts: [],
+    title: "",
+    text: "",
+  };
 
   componentDidMount() {
     db.ref("all_posts/").on("value", (snapshot) => {
@@ -26,17 +23,14 @@ class ItemsList extends Component {
   }
 
   render() {
+    const { posts } = this.state;
+    // const posts = this.state.posts;
+
     return (
       <Container maxWidth="sm">
         <div>
-          {this.state.posts.map((post) => (
-            <ItemsCard
-              key={post.key}
-              id={post.key}
-              title={post.title}
-              text={post.text}
-              date={post.date}
-            />
+          {posts.map((post) => (
+            <ItemsCard key={post.key} post={post} />
           ))}
         </div>
       </Container>

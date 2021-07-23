@@ -1,6 +1,6 @@
 import { AppBar, Container, Toolbar, Typography } from "@material-ui/core";
-import ItemsForm from "./ItemsForm";
-import ItemsList from "./ItemsList";
+import ItemsForm from "../components/ItemsForm";
+import ItemsList from "../components/ItemsList";
 
 function ItemsPage() {
   return (
