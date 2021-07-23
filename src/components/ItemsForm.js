@@ -1,6 +1,6 @@
 import { Button, Container, TextField } from "@material-ui/core";
 import React, { Component } from "react";
-import db from "../utils/firebase";
+import createItem from "../api/createItem";
 
 class ItemsForm extends Component {
   state = {
@@ -41,18 +41,9 @@ class ItemsForm extends Component {
   createPost = (e) => {
     e.preventDefault();
     const { title, text } = this.state;
-    const date = new Date().toLocaleString("pt-br");
 
     if (this.checkValid() === true) {
-      db.ref(`all_posts/`)
-        .push({
-          title,
-          text,
-          date,
-        })
-        .then(() => {
-          this.setState({ title: "", text: "" });
-        });
+      createItem(title, text, () => this.setState({ title: "", text: "" }));
     }
   };
 
