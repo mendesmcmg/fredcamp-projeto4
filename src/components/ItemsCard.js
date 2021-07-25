@@ -1,6 +1,6 @@
 import { Button, Card, CardContent } from "@material-ui/core";
 import deleteItem from "../api/deleteItem";
-import EditButton from "./EditButton";
+import EditButton from "./ItemsEdit";
 
 const ItemsCard = ({ post }) => {
   const { key, title, text, date } = post;
