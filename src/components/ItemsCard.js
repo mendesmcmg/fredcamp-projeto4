@@ -18,7 +18,7 @@ const ItemsCard = ({ post }) => {
         >
           Delete
         </Button>
-        <EditButton>Editar</EditButton>
+        <EditButton post={post}>Editar</EditButton>
       </CardContent>
     </Card>
   );

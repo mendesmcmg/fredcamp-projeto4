@@ -1,6 +1,13 @@
-import { Button, Container, TextField } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  IconButton,
+  SvgIcon,
+  TextField,
+} from "@material-ui/core";
 import React, { Component } from "react";
 import createItem from "../api/createItem";
+import editItem from "../api/editItem";
 
 class ItemsForm extends Component {
   state = {
@@ -8,7 +15,15 @@ class ItemsForm extends Component {
     text: "",
     titleValid: true,
     textValid: true,
+    exists: false,
   };
+
+  componentDidMount() {
+    const post = this.props.post;
+    if (post) {
+      this.setState({ title: post.title, text: post.text, exists: true });
+    }
+  }
 
   handleTitleChange = (e) => {
     this.setState({
@@ -20,6 +35,13 @@ class ItemsForm extends Component {
     this.setState({
       text: e.target.value,
     });
+  };
+
+  handleSave = () => {
+    const {key, date} = this.props.post
+    const {title, text} = this.state
+    editItem(key, title, text, date);
+    console.log(key, title, text, date)
   };
 
   checkValid = () => {
@@ -48,7 +70,7 @@ class ItemsForm extends Component {
   };
 
   render() {
-    const { title, text, titleValid, textValid } = this.state;
+    const { title, text, titleValid, textValid, exists } = this.state;
 
     return (
       <Container maxWidth="sm">
@@ -79,6 +101,21 @@ class ItemsForm extends Component {
           >
             Create Post
           </Button>
+          {exists ? (
+            <IconButton
+              aria-label="save-edit"
+              style={{ float: "right" }}
+              onClick={this.handleSave}
+            >
+              <SvgIcon>
+                <path
+                  fill="currentColor"
+                  d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z"
+                />
+              </SvgIcon>
+              <span style={{ fontSize: 22, marginLeft: 5 }}>Save</span>
+            </IconButton>
+          ) : null}
         </form>
       </Container>
     );

@@ -1,8 +1,9 @@
 import { IconButton, Modal, SvgIcon, Fade, Backdrop } from "@material-ui/core";
 import { useState } from "react";
 import modalStyle from "../utils/modalStyle";
+import ItemsForm from "./ItemsForm";
 
-function EditButton() {
+function EditButton({ post }) {
   const [open, setOpen] = useState(false);
   const classes = modalStyle();
 
@@ -43,22 +44,10 @@ function EditButton() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h1>opened</h1>
-
-            
-            <IconButton
-              aria-label="save-edit"
-              style={{ float: "right" }}
-              onClick={handleClose}
-            >
-              <SvgIcon>
-                <path
-                  fill="currentColor"
-                  d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z"
-                />
-              </SvgIcon>
-              <span style={{ fontSize: 22, marginLeft: 5 }}>Save</span>
-            </IconButton>
+            <form>
+              <h1>Editar post</h1>
+              <ItemsForm post={post}/>
+            </form>
           </div>
         </Fade>
       </Modal>
