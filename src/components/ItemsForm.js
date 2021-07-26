@@ -38,10 +38,9 @@ class ItemsForm extends Component {
   };
 
   handleSave = () => {
-    const {key, date} = this.props.post
-    const {title, text} = this.state
-    editItem(key, title, text, date);
-    console.log(key, title, text, date)
+    const { key, date } = this.props.post;
+    const { title, text } = this.state;
+    editItem(key, title, text, date, () => this.props.handleClose());
   };
 
   checkValid = () => {

@@ -3,7 +3,7 @@ import { useState } from "react";
 import modalStyle from "../utils/modalStyle";
 import ItemsForm from "./ItemsForm";
 
-function EditButton({ post }) {
+function EditModal({ post }) {
   const [open, setOpen] = useState(false);
   const classes = modalStyle();
 
@@ -46,7 +46,7 @@ function EditButton({ post }) {
           <div className={classes.paper}>
             <form>
               <h1>Editar post</h1>
-              <ItemsForm post={post}/>
+              <ItemsForm post={post} handleClose={handleClose}/>
             </form>
           </div>
         </Fade>
@@ -55,4 +55,4 @@ function EditButton({ post }) {
   );
 }
 
-export default EditButton;
+export default EditModal;

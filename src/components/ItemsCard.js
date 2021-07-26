@@ -1,6 +1,6 @@
 import { Button, Card, CardContent } from "@material-ui/core";
 import deleteItem from "../api/deleteItem";
-import EditButton from "./ItemsEdit";
+import EditModal from "./EditModal";
 
 const ItemsCard = ({ post }) => {
   const { key, title, text, date } = post;
@@ -18,7 +18,7 @@ const ItemsCard = ({ post }) => {
         >
           Delete
         </Button>
-        <EditButton post={post}>Editar</EditButton>
+        <EditModal post={post}>Editar</EditModal>
       </CardContent>
     </Card>
   );
