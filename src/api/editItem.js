@@ -1,7 +1,7 @@
 import db from "../utils/firebase";
 
 const editItem = (key, title, text, date, funcCallBack) => {
-  let newPostData = { title: title, text: text, date: date };
+  let newPostData = { title, text, date };
   let updates = {};
   updates[`/all_posts/` + key] = newPostData;
 
