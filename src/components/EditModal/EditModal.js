@@ -1,4 +1,4 @@
-import { IconButton, Modal, SvgIcon, Fade, Backdrop } from "@material-ui/core";
+import { IconButton, Modal, Fade, Backdrop } from "@material-ui/core";
 import { useState } from "react";
 import EditIcon from '@material-ui/icons/Edit';
 import style from "./style";
