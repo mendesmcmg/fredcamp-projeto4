@@ -62,7 +62,10 @@ class ItemsForm extends Component {
     const { title, text } = this.state;
 
     if (this.checkValid() === true) {
-      createItem(title, text, () => this.setState({ title: "", text: "" }));
+      createItem(title, text, () => {
+        this.setState({ title: "", text: "" });
+        this.props.updateList();
+      });
     }
   };
 
