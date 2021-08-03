@@ -39,7 +39,6 @@ class ItemsForm extends Component {
       this.props.handleClose();
       this.props.updateList();
     });
-    this.props.updateList();
   };
 
   checkValid = () => {
