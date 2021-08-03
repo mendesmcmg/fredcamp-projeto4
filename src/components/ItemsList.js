@@ -1,6 +1,5 @@
 import { Container } from "@material-ui/core";
 import { Component } from "react";
-import getAllItems from "../api/getAllItems";
 import ItemsCard from "./ItemsCard";
 
 class ItemsList extends Component {
