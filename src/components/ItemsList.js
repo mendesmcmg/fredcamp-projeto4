@@ -10,8 +10,12 @@ class ItemsList extends Component {
     text: "",
   };
 
-  componentDidMount() {
+  updateList = () => {
     getAllItems((allPosts) => this.setState({ posts: allPosts }));
+  }
+
+  componentDidMount() {
+    this.updateList();
   }
 
   render() {
@@ -22,7 +26,7 @@ class ItemsList extends Component {
       <Container maxWidth="sm">
         <div>
           {posts.map((post) => (
-            <ItemsCard key={post.key} post={post} />
+            <ItemsCard key={post.key} post={post} updateList={this.updateList}/>
           ))}
         </div>
       </Container>

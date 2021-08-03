@@ -1,9 +1,5 @@
-import {
-  Button,
-  Container,
-  TextField,
-} from "@material-ui/core";
-import React, {Component} from "react";
+import { Button, Container, TextField } from "@material-ui/core";
+import React, { Component } from "react";
 import createItem from "../api/createItem";
 import editItem from "../api/editItem";
 
@@ -17,10 +13,10 @@ class ItemsForm extends Component {
   };
 
   componentDidMount() {
-    const {post} = this.props;
+    const { post } = this.props;
     if (post) {
-      const {title, text} = post;
-      this.setState({title, text, exists: true});
+      const { title, text } = post;
+      this.setState({ title, text, exists: true });
     }
   }
 
@@ -37,47 +33,51 @@ class ItemsForm extends Component {
   };
 
   handleSave = () => {
-    const {key, date} = this.props.post;
-    const {title, text} = this.state;
-    editItem(key, title, text, date, () => this.props.handleClose());
+    const { key, date } = this.props.post;
+    const { title, text } = this.state;
+    editItem(key, title, text, date, () => {
+      this.props.handleClose();
+      this.props.updateList();
+    });
+    this.props.updateList();
   };
 
   checkValid = () => {
-    const {title, text} = this.state;
+    const { title, text } = this.state;
     if (title === "") {
-      this.setState({titleValid: false});
+      this.setState({ titleValid: false });
     } else {
-      this.setState({titleValid: true});
+      this.setState({ titleValid: true });
     }
     if (text === "") {
-      this.setState({textValid: false});
+      this.setState({ textValid: false });
     } else {
-      this.setState({textValid: true});
+      this.setState({ textValid: true });
     }
 
     return title !== "" && text !== "";
   };
 
   createPost = () => {
-    const {title, text} = this.state;
+    const { title, text } = this.state;
 
     if (this.checkValid() === true) {
-      createItem(title, text, () => this.setState({title: "", text: ""}));
+      createItem(title, text, () => this.setState({ title: "", text: "" }));
     }
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const {exists} = this.state;
+    const { exists } = this.state;
     if (exists) {
       this.handleSave();
     } else {
-      this.createPost()
+      this.createPost();
     }
-  }
+  };
 
   render() {
-    const {title, text, titleValid, textValid, exists} = this.state;
+    const { title, text, titleValid, textValid, exists } = this.state;
 
     return (
       <Container maxWidth="sm">
@@ -86,7 +86,7 @@ class ItemsForm extends Component {
             error={!titleValid}
             helperText={!titleValid && "Title required"}
             fullWidth
-            style={{marginBottom: 8}}
+            style={{ marginBottom: 8 }}
             label="Title"
             value={title}
             onChange={this.handleTitleChange}
@@ -96,7 +96,7 @@ class ItemsForm extends Component {
             helperText={!textValid && "Text required"}
             fullWidth
             label="Text"
-            style={{marginBottom: 8}}
+            style={{ marginBottom: 8 }}
             value={text}
             onChange={this.handleTextChange}
           />
