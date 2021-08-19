@@ -40,10 +40,8 @@ function EditModal({ post }) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <form>
-              <h1>Editar post</h1>
-              <ItemsForm post={post} handleClose={handleClose}/>
-            </form>
+            <h1>Editar post</h1>
+            <ItemsForm post={post} handleClose={handleClose}/>
           </div>
         </Fade>
       </Modal>
