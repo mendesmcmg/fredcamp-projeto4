@@ -5,7 +5,7 @@ import ItemsCard from "./ItemsCard";
 
 function ItemsList() {
   const { posts, updateList } = useContext(AppContext);
-  useEffect(() => updateList(), []);
+  useEffect(() => updateList(), [updateList]);
 
   return (
     <Container maxWidth="sm">

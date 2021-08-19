@@ -1,120 +1,122 @@
 import { Button, Container, TextField } from "@material-ui/core";
-import React, { Component } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import createItem from "../api/createItem";
 import editItem from "../api/editItem";
+import AppContext from "../context/context";
 
-class ItemsForm extends Component {
-  state = {
+function ItemsForm({ post, handleClose }) {
+  const [objState, setObjState] = useState({
     title: "",
     text: "",
-    titleValid: true,
-    textValid: true,
     exists: false,
-  };
+  });
+  const [titleValid, setTitleValid] = useState(true);
+  const [textValid, setTextValid] = useState(true);
 
-  componentDidMount() {
-    const { post } = this.props;
-    
+  const { updateList } = useContext(AppContext);
+
+  const { title, text, exists } = objState;
+
+  useEffect(() => {
     if (post) {
       const { title, text } = post;
-      this.setState({ title, text, exists: true });
+      setObjState({ title, text, exists: true });
     }
-  }
+  }, [post]);
 
-  handleTitleChange = (e) => {
-    this.setState({
+  const handleTitleChange = (e) => {
+    setObjState({
+      ...objState,
       title: e.target.value,
     });
   };
 
-  handleTextChange = (e) => {
-    this.setState({
+  const handleTextChange = (e) => {
+    setObjState({
+      ...objState,
       text: e.target.value,
     });
   };
 
-  handleSave = () => {
-    const { key, date } = this.props.post;
-    const { title, text } = this.state;
+  const handleSave = () => {
+    const { key, date } = post;
+    const { title, text } = objState;
+
     editItem(key, title, text, date, () => {
-      this.props.handleClose();
-      this.props.updateList();
+      handleClose();
+      updateList();
     });
   };
 
-  checkValid = () => {
-    const { title, text } = this.state;
+  const checkValid = () => {
+    const { title, text } = objState;
     if (title === "") {
-      this.setState({ titleValid: false });
+      setTitleValid(false);
     } else {
-      this.setState({ titleValid: true });
+      setTitleValid(true);
     }
     if (text === "") {
-      this.setState({ textValid: false });
+      setTextValid(false);
     } else {
-      this.setState({ textValid: true });
+      setTextValid(true);
     }
 
     return title !== "" && text !== "";
   };
 
-  createPost = () => {
-    const { title, text } = this.state;
+  const createPost = () => {
+    const { title, text } = objState;
 
-    if (this.checkValid() === true) {
+    if (checkValid() === true) {
       createItem(title, text, () => {
-        this.setState({ title: "", text: "" });
-        this.props.updateList();
+        setObjState({ ...objState, title: "", text: "" });
+        updateList();
       });
     }
   };
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const { exists } = this.state;
+    const { exists } = objState;
     if (exists) {
-      this.handleSave();
+      handleSave();
     } else {
-      this.createPost();
+      createPost();
     }
   };
 
-  render() {
-    const { title, text, titleValid, textValid, exists } = this.state;
-
-    return (
-      <Container maxWidth="sm">
-        <form onSubmit={this.handleSubmit}>
-          <TextField
-            error={!titleValid}
-            helperText={!titleValid && "Title required"}
-            fullWidth
-            style={{ marginBottom: 8 }}
-            label="Title"
-            value={title}
-            onChange={this.handleTitleChange}
-          />
-          <TextField
-            error={!textValid}
-            helperText={!textValid && "Text required"}
-            fullWidth
-            label="Text"
-            style={{ marginBottom: 8 }}
-            value={text}
-            onChange={this.handleTextChange}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.handleSubmit}
-            type="submit"
-          >
-            {exists ? "save" : "Create Post"}
-          </Button>
-        </form>
-      </Container>
-    );
-  }
+  return (
+    <Container maxWidth="sm">
+      <form onSubmit={handleSubmit}>
+        <TextField
+          error={!titleValid}
+          helperText={!titleValid && "Title required"}
+          fullWidth
+          style={{ marginBottom: 8 }}
+          label="Title"
+          value={title}
+          onChange={handleTitleChange}
+        />
+        <TextField
+          error={!textValid}
+          helperText={!textValid && "Text required"}
+          fullWidth
+          label="Text"
+          style={{ marginBottom: 8 }}
+          value={text}
+          onChange={handleTextChange}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSubmit}
+          type="submit"
+        >
+          {exists ? "save" : "Create Post"}
+        </Button>
+      </form>
+    </Container>
+  );
 }
 
 export default ItemsForm;
