@@ -1,40 +1,27 @@
 import { AppBar, Container, Toolbar, Typography } from "@material-ui/core";
-import { Component } from "react";
-import getAllItems from "../api/getAllItems";
+import { useContext } from "react";
 import ItemsForm from "../components/ItemsForm";
 import ItemsList from "../components/ItemsList";
+import AppContext from "../context/context";
 
-class ItemsPage extends Component {
-  state = {
-    posts: [],
-  };
-
-  updateList = () => {
-    getAllItems((allPosts) => this.setState({ posts: allPosts }));
-  };
-
-  componentDidMount() {
-    this.updateList();
-  }
-
-  render() {
-    return (
-      <>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h5">Post List</Typography>
-          </Toolbar>
-        </AppBar>
-        <Container maxWidth="sm">
-          <br />
-          <br />
-          <ItemsForm updateList={this.updateList} />
-          <br />
-          <ItemsList updateList={this.updateList} posts={this.state.posts}/>
-        </Container>
-      </>
-    );
-  }
+function ItemsPage() {
+  const { posts, updateList } = useContext(AppContext);
+  return (
+    <>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h5">Post List</Typography>
+        </Toolbar>
+      </AppBar>
+      <Container maxWidth="sm">
+        <br />
+        <br />
+        <ItemsForm />
+        <br />
+        <ItemsList />
+      </Container>
+    </>
+  );
 }
 
 export default ItemsPage;

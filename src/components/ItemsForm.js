@@ -14,6 +14,7 @@ class ItemsForm extends Component {
 
   componentDidMount() {
     const { post } = this.props;
+    
     if (post) {
       const { title, text } = post;
       this.setState({ title, text, exists: true });

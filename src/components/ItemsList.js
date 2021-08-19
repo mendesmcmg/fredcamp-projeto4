@@ -1,23 +1,21 @@
 import { Container } from "@material-ui/core";
-import { Component } from "react";
+import { useContext, useEffect } from "react";
+import AppContext from "../context/context";
 import ItemsCard from "./ItemsCard";
 
-class ItemsList extends Component {
+function ItemsList() {
+  const { posts, updateList } = useContext(AppContext);
+  useEffect(() => updateList(), []);
 
-  render() {
-    const { posts, updateList } = this.props;
-    // const posts = this.state.posts;
-
-    return (
-      <Container maxWidth="sm">
-        <div>
-          {posts.map((post) => (
-            <ItemsCard key={post.key} post={post} updateList={updateList}/>
-          ))}
-        </div>
-      </Container>
-    );
-  }
+  return (
+    <Container maxWidth="sm">
+      <div>
+        {posts.map((post) => (
+          <ItemsCard key={post.key} post={post} updateList={updateList} />
+        ))}
+      </div>
+    </Container>
+  );
 }
 
 export default ItemsList;
