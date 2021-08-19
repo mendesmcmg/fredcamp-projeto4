@@ -11,7 +11,7 @@ function ItemsList() {
     <Container maxWidth="sm">
       <div>
         {posts.map((post) => (
-          <ItemsCard key={post.key} post={post} updateList={updateList} />
+          <ItemsCard key={post.key} post={post} />
         ))}
       </div>
     </Container>

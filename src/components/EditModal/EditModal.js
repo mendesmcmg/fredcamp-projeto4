@@ -4,7 +4,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import style from "./style";
 import ItemsForm from "../ItemsForm";
 
-function EditModal({ post, updateList }) {
+function EditModal({ post }) {
   const [open, setOpen] = useState(false);
   const classes = style();
 
@@ -42,7 +42,7 @@ function EditModal({ post, updateList }) {
           <div className={classes.paper}>
             <form>
               <h1>Editar post</h1>
-              <ItemsForm post={post} updateList={updateList} handleClose={handleClose}/>
+              <ItemsForm post={post} handleClose={handleClose}/>
             </form>
           </div>
         </Fade>

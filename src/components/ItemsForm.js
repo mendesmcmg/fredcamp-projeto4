@@ -22,7 +22,7 @@ function ItemsForm({ post, handleClose }) {
       const { title, text } = post;
       setObjState({ title, text, exists: true });
     }
-  }, [post]);
+  }, []);
 
   const handleTitleChange = (e) => {
     setObjState({

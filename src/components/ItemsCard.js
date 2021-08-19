@@ -1,9 +1,12 @@
 import { Button, Card, CardContent } from "@material-ui/core";
+import { useContext } from "react";
 import deleteItem from "../api/deleteItem";
+import AppContext from "../context/context";
 import EditModal from "./EditModal/EditModal";
 
-const ItemsCard = ({ post, updateList }) => {
+const ItemsCard = ({ post }) => {
   const { key, title, text, date } = post;
+  const { updateList } = useContext(AppContext);
 
   return (
     <Card variant="outlined" style={{ marginBottom: 8 }}>
@@ -15,12 +18,12 @@ const ItemsCard = ({ post, updateList }) => {
           variant="outlined"
           color="secondary"
           onClick={() => {
-            deleteItem(key, ()=> updateList());
+            deleteItem(key, () => updateList());
           }}
         >
           Delete
         </Button>
-        <EditModal post={post} updateList={updateList}>
+        <EditModal post={post}>
           Editar
         </EditModal>
       </CardContent>
