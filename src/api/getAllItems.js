@@ -1,7 +1,7 @@
 import db from "../utils/firebase";
 
 const getAllItems = (funcCallback) => {
-  db.ref("all_posts/").on("value", (snapshot) => {
+  db.ref("all_posts/").once("value", (snapshot) => {
     let allPosts = [];
     snapshot.forEach((snap) => {
       let value = snap.val();

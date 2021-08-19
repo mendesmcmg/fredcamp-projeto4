@@ -2,7 +2,7 @@ import { Button, Card, CardContent } from "@material-ui/core";
 import deleteItem from "../api/deleteItem";
 import EditModal from "./EditModal/EditModal";
 
-const ItemsCard = ({ post }) => {
+const ItemsCard = ({ post, updateList }) => {
   const { key, title, text, date } = post;
 
   return (
@@ -14,11 +14,15 @@ const ItemsCard = ({ post }) => {
         <Button
           variant="outlined"
           color="secondary"
-          onClick={() => deleteItem(key)}
+          onClick={() => {
+            deleteItem(key, ()=> updateList());
+          }}
         >
           Delete
         </Button>
-        <EditModal post={post}>Editar</EditModal>
+        <EditModal post={post} updateList={updateList}>
+          Editar
+        </EditModal>
       </CardContent>
     </Card>
   );
